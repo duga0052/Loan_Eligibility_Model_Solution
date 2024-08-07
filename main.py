@@ -7,6 +7,18 @@ from src.visualization.visualization import plot_loan_status_distribution, plot_
 
 logging.basicConfig(level=logging.INFO)
 
+# Ensure the log file exists
+log_file_exists = os.path.exists('app.log')
+if not log_file_exists:
+    with open('app.log', 'w') as f:
+        f.write('Log file created.\n')
+
+# Configure logging
+def setup_logging():
+    logging.basicConfig(level=logging.INFO, filename='app.log', filemode='a', format='%(asctime)s - %(levelname)s - %(message)s')
+
+setup_logging()
+
 def load_and_print_data(file_path):
     try:
         # Check if the file exists
